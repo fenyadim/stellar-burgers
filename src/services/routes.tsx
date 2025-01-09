@@ -1,4 +1,4 @@
-import { IngredientDetails, Modal, OrderInfo } from '@components';
+import { IngredientDetails, OrderInfo } from '@components';
 import {
   ConstructorPage,
   Feed,
@@ -14,6 +14,7 @@ import {
 type TRoute = {
   path: string;
   element: JSX.Element;
+  titleModal?: string;
   isProtected?: boolean;
 };
 
@@ -28,19 +29,13 @@ export const routesConfig: TRoute[] = [
   },
   {
     path: '/feed/:number',
-    element: (
-      <Modal title='Детали заказа' onClose={() => null}>
-        <OrderInfo />
-      </Modal>
-    )
+    element: <OrderInfo />,
+    titleModal: 'Детали заказа'
   },
   {
     path: '/ingredients/:id',
-    element: (
-      <Modal title='Ингредиенты' onClose={() => null}>
-        <IngredientDetails />
-      </Modal>
-    )
+    element: <IngredientDetails />,
+    titleModal: 'Ингредиент'
   },
   {
     path: '/login',
@@ -74,11 +69,8 @@ export const routesConfig: TRoute[] = [
   },
   {
     path: '/profile/orders/:number',
-    element: (
-      <Modal title='Детали заказа' onClose={() => null}>
-        <OrderInfo />
-      </Modal>
-    )
+    element: <OrderInfo />,
+    titleModal: 'Детали заказа'
   },
   {
     path: '*',
