@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from './cookie';
+import { deleteCookie, getCookie, setCookie } from './cookie';
 import { TIngredient, TOrder, TUser } from './types';
 
 const URL = process.env.BURGER_API_URL;
@@ -234,4 +234,8 @@ export const logoutApi = () =>
     body: JSON.stringify({
       token: localStorage.getItem('refreshToken')
     })
-  }).then((res) => checkResponse<TServerResponse<{}>>(res));
+  }).then((res) => {
+    checkResponse<TServerResponse<{}>>(res);
+    localStorage.removeItem('refreshToken');
+    deleteCookie('accessToken');
+  });
