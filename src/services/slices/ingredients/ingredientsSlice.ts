@@ -23,6 +23,10 @@ export const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {},
+  selectors: {
+    ingredientsSelector: (state) => state.items,
+    isIngredientsLoadingSelector: (state) => state.isLoading
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getIngredientsThunk.pending, (state) => {
@@ -38,3 +42,6 @@ export const ingredientsSlice = createSlice({
       });
   }
 });
+
+export const { ingredientsSelector, isIngredientsLoadingSelector } =
+  ingredientsSlice.selectors;

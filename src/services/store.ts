@@ -5,9 +5,9 @@ import {
   useDispatch as dispatchHook,
   useSelector as selectorHook
 } from 'react-redux';
-import { ingredientsSlice } from './slices/ingredients/ingredientsSlice';
+import { feedsSlice, ingredientsSlice, userSlice } from './slices';
 
-const rootReducer = combineSlices(ingredientsSlice); // Заменить на импорт настоящего редьюсера
+const rootReducer = combineSlices(ingredientsSlice, feedsSlice, userSlice);
 
 const store = configureStore({
   reducer: rootReducer,

@@ -1,19 +1,12 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Preloader } from '@ui';
 import { TTabMode } from '@utils-types';
-import { getIngredientsThunk } from '../../services/slices/ingredients/ingredientsSlice';
-import { useDispatch, useSelector } from '../../services/store';
+import { useSelector } from '../../services/store';
 import { BurgerIngredientsUI } from '../ui/burger-ingredients';
 
 export const BurgerIngredients: FC = () => {
   const ingredients = useSelector((state) => state.ingredients);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getIngredientsThunk());
-  }, []);
 
   const buns = ingredients.items.filter((item) => item.type === 'bun');
   const mains = ingredients.items.filter((item) => item.type === 'main');
@@ -45,10 +38,6 @@ export const BurgerIngredients: FC = () => {
       setCurrentTab('main');
     }
   }, [inViewBuns, inViewFilling, inViewSauces]);
-
-  if (!ingredients.items.length) {
-    return <Preloader />;
-  }
 
   const onTabClick = (tab: string) => {
     setCurrentTab(tab as TTabMode);

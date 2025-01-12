@@ -1,4 +1,4 @@
-import { IngredientDetails, OrderInfo } from '@components';
+import { IngredientDetails, OnlyUnAuth, OrderInfo } from '@components';
 import {
   ConstructorPage,
   Feed,
@@ -39,23 +39,35 @@ export const routesConfig: TRoute[] = [
   },
   {
     path: '/login',
-    element: <Login />,
-    isProtected: true
+    element: (
+      <OnlyUnAuth>
+        <Login />
+      </OnlyUnAuth>
+    )
   },
   {
     path: '/register',
-    element: <Register />,
-    isProtected: true
+    element: (
+      <OnlyUnAuth>
+        <Register />
+      </OnlyUnAuth>
+    )
   },
   {
     path: '/forgot-password',
-    element: <ForgotPassword />,
-    isProtected: true
+    element: (
+      <OnlyUnAuth>
+        <ForgotPassword />
+      </OnlyUnAuth>
+    )
   },
   {
     path: '/reset-password',
-    element: <ResetPassword />,
-    isProtected: true
+    element: (
+      <OnlyUnAuth>
+        <ResetPassword />
+      </OnlyUnAuth>
+    )
   },
   {
     path: '/profile',

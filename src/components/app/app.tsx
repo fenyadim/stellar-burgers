@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
 import '../../index.css';
 import { routesConfig } from '../../services/routes';
 import styles from './app.module.css';
 
-import { AppHeader, Modal, ProtectedRoute } from '@components';
+import { AppHeader, Modal, OnlyAuth } from '@components';
+import { checkUserAuth, getIngredientsThunk } from '@services/slices';
+import { useDispatch } from '@services/store';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 const App = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserAuth());
+    dispatch(getIngredientsThunk());
+  }, []);
 
   const onCloseModal = () => {
     navigate(-1);
@@ -21,7 +30,7 @@ const App = () => {
             <Route
               key={path}
               path={path}
-              element={<ProtectedRoute>{element}</ProtectedRoute>}
+              element={<OnlyAuth>{element}</OnlyAuth>}
             />
           ) : titleModal ? (
             <Route
