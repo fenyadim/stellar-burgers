@@ -50,6 +50,7 @@ export const checkUserAuth = createAsyncThunk(
     if (getCookie('accessToken')) {
       getUserApi()
         .then(({ user }) => dispatch(setUser(user)))
+        .catch((e) => console.log(e))
         .finally(() => dispatch(setIsAuthChecked(true)));
     } else {
       dispatch(setIsAuthChecked(true));

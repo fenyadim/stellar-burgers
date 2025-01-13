@@ -4,16 +4,24 @@ import { routesConfig } from '../../services/routes';
 import styles from './app.module.css';
 
 import { AppHeader, Modal, OnlyAuth } from '@components';
-import { checkUserAuth, getIngredientsThunk } from '@services/slices';
+import {
+  checkUserAuth,
+  getFeedsThunk,
+  getIngredientsThunk
+} from '@services/slices';
 import { useDispatch } from '@services/store';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const backgroundLocation = location.state?.background;
 
   useEffect(() => {
     dispatch(checkUserAuth());
+    dispatch(getFeedsThunk());
     dispatch(getIngredientsThunk());
   }, []);
 
@@ -24,29 +32,38 @@ const App = () => {
   return (
     <div className={styles.app}>
       <AppHeader />
-      <Routes>
-        {routesConfig.map(({ path, element, isProtected, titleModal }) =>
+      <Routes location={backgroundLocation || location}>
+        {routesConfig.map(({ path, element, isProtected }) =>
           isProtected ? (
             <Route
               key={path}
               path={path}
               element={<OnlyAuth>{element}</OnlyAuth>}
             />
-          ) : titleModal ? (
-            <Route
-              key={path}
-              path={path}
-              element={
-                <Modal title={titleModal} onClose={onCloseModal}>
-                  {element}
-                </Modal>
-              }
-            />
           ) : (
             <Route key={path} path={path} element={element} />
           )
         )}
       </Routes>
+
+      {backgroundLocation && (
+        <Routes>
+          {routesConfig.map(
+            ({ path, titleModal, element }) =>
+              titleModal && (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    <Modal title={titleModal} onClose={onCloseModal}>
+                      {element}
+                    </Modal>
+                  }
+                />
+              )
+          )}
+        </Routes>
+      )}
     </div>
   );
 };

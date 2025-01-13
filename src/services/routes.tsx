@@ -1,4 +1,9 @@
-import { IngredientDetails, OnlyUnAuth, OrderInfo } from '@components';
+import {
+  IngredientDetails,
+  OnlyAuth,
+  OnlyUnAuth,
+  OrderInfo
+} from '@components';
 import {
   ConstructorPage,
   Feed,
@@ -18,27 +23,31 @@ type TRoute = {
   isProtected?: boolean;
 };
 
+export const getConstuctorPath = () => '/';
+export const getFeedPath = () => '/feed';
+export const getLoginPath = () => '/login';
+export const getRegisterPath = () => '/register';
+export const getForgotPasswordPath = () => '/forgot-password';
+export const getResetPasswordPath = () => '/reset-password';
+export const getProfilePath = () => '/profile';
+export const getProfileOrdersPath = () => '/profile/orders';
+export const getIngredientDetailsPath = (id: string) => `/ingredients/${id}`;
+export const getOrderInfoPath = (number: string) => `/feed/${number}`;
+export const getProfileOrderInfoPath = (number: string) =>
+  `/profile/orders/${number}`;
+
 export const routesConfig: TRoute[] = [
   {
-    path: '/',
+    path: getConstuctorPath(),
     element: <ConstructorPage />
   },
   {
-    path: '/feed',
+    path: getFeedPath(),
     element: <Feed />
   },
+
   {
-    path: '/feed/:number',
-    element: <OrderInfo />,
-    titleModal: 'Детали заказа'
-  },
-  {
-    path: '/ingredients/:id',
-    element: <IngredientDetails />,
-    titleModal: 'Ингредиент'
-  },
-  {
-    path: '/login',
+    path: getLoginPath(),
     element: (
       <OnlyUnAuth>
         <Login />
@@ -46,7 +55,7 @@ export const routesConfig: TRoute[] = [
     )
   },
   {
-    path: '/register',
+    path: getRegisterPath(),
     element: (
       <OnlyUnAuth>
         <Register />
@@ -54,7 +63,7 @@ export const routesConfig: TRoute[] = [
     )
   },
   {
-    path: '/forgot-password',
+    path: getForgotPasswordPath(),
     element: (
       <OnlyUnAuth>
         <ForgotPassword />
@@ -62,7 +71,7 @@ export const routesConfig: TRoute[] = [
     )
   },
   {
-    path: '/reset-password',
+    path: getResetPasswordPath(),
     element: (
       <OnlyUnAuth>
         <ResetPassword />
@@ -70,18 +79,32 @@ export const routesConfig: TRoute[] = [
     )
   },
   {
-    path: '/profile',
+    path: getProfilePath(),
     element: <Profile />,
     isProtected: true
   },
   {
-    path: '/profile/orders',
+    path: getProfileOrdersPath(),
     element: <ProfileOrders />,
     isProtected: true
   },
   {
-    path: '/profile/orders/:number',
+    path: getOrderInfoPath(':number'),
     element: <OrderInfo />,
+    titleModal: 'Детали заказа'
+  },
+  {
+    path: getIngredientDetailsPath(':id'),
+    element: <IngredientDetails />,
+    titleModal: 'Ингредиент'
+  },
+  {
+    path: getProfileOrderInfoPath(':number'),
+    element: (
+      <OnlyAuth>
+        <OrderInfo />
+      </OnlyAuth>
+    ),
     titleModal: 'Детали заказа'
   },
   {

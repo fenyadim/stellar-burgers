@@ -18,7 +18,7 @@ const initialState: TInitalState = {
   error: undefined
 };
 
-export const getFeedsThunk = createAsyncThunk('feeds/getFeeds', () =>
+export const getFeedsThunk = createAsyncThunk('feeds/getFeeds', async () =>
   getFeedsApi()
 );
 

@@ -1,4 +1,9 @@
 import {
+  getConstuctorPath,
+  getFeedPath,
+  getProfilePath
+} from '@services/routes';
+import {
   BurgerIcon,
   ListIcon,
   Logo,
@@ -17,7 +22,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
           className={({ isActive }) =>
             `${styles.link} ${isActive ? styles.link_active : ''}`
           }
-          to='/'
+          to={getConstuctorPath()}
         >
           <BurgerIcon type={'primary'} />
           <p className='text text_type_main-default ml-2 mr-10'>Конструктор</p>
@@ -26,7 +31,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
           className={({ isActive }) =>
             `${styles.link} ${isActive ? styles.link_active : ''}`
           }
-          to='/feed'
+          to={getFeedPath()}
         >
           <ListIcon type={'primary'} />
           <p className='text text_type_main-default ml-2'>Лента заказов</p>
@@ -39,7 +44,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
         className={({ isActive }) =>
           `${styles.link} ${styles.link_position_last} ${isActive ? styles.link_active : ''}`
         }
-        to='/profile'
+        to={getProfilePath()}
       >
         <ProfileIcon type={'primary'} />
         <p className='text text_type_main-default ml-2'>
