@@ -1,8 +1,8 @@
-import { logoutUserThunk } from '@services/slices';
-import { useDispatch } from '@services/store';
+import { logoutUserThunk } from '@slices';
 import { ProfileMenuUI } from '@ui';
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from '../../services/store';
 
 export const ProfileMenu: FC = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
-import { ingredientsSelector, ordersFeedsSelector } from '@services/slices';
-import { useSelector } from '@services/store';
+import { ingredientsSelector, ordersFeedsSelector } from '@slices';
 import { TIngredient } from '@utils-types';
 import { FC, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from '../../services/store';
 import { OrderInfoUI } from '../ui/order-info';
 import { Preloader } from '../ui/preloader';
 

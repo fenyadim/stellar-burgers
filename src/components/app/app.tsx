@@ -4,13 +4,15 @@ import { routesConfig } from '../../services/routes';
 import styles from './app.module.css';
 
 import { AppHeader, Modal, OnlyAuth } from '@components';
+
 import {
   checkUserAuth,
   getFeedsThunk,
-  getIngredientsThunk
-} from '@services/slices';
-import { useDispatch } from '@services/store';
+  getIngredientsThunk,
+  getOrdersThunk
+} from '@slices';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from '../../services/store';
 
 const App = () => {
   const navigate = useNavigate();
@@ -23,6 +25,7 @@ const App = () => {
     dispatch(checkUserAuth());
     dispatch(getFeedsThunk());
     dispatch(getIngredientsThunk());
+    dispatch(getOrdersThunk());
   }, []);
 
   const onCloseModal = () => {

@@ -8,7 +8,7 @@ import {
   CurrencyIcon
 } from '@zlden/react-developer-burger-ui-components';
 
-import { getIngredientDetailsPath } from '@services/routes';
+import { getIngredientDetailsPath } from '../../../services/routes';
 import { TBurgerIngredientUIProps } from './type';
 
 export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(

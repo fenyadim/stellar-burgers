@@ -1,7 +1,7 @@
-import { errorSelector, registerUserThunk } from '@services/slices';
-import { useDispatch, useSelector } from '@services/store';
+import { errorSelector, registerUserThunk } from '@slices';
 import { RegisterUI } from '@ui-pages';
 import { FC, SyntheticEvent, useState } from 'react';
+import { useDispatch, useSelector } from '../../services/store';
 
 export const Register: FC = () => {
   const dispatch = useDispatch();

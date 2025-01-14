@@ -1,8 +1,8 @@
-import { updateUserThunk, userDataSelector } from '@services/slices';
-import { useDispatch, useSelector } from '@services/store';
+import { updateUserThunk, userDataSelector } from '@slices';
 import { ProfileUI } from '@ui-pages';
 import { TUser } from '@utils-types';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from '../../services/store';
 
 export const Profile: FC = () => {
   const user = useSelector(userDataSelector) as TUser;

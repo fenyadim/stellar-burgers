@@ -8,7 +8,7 @@ import {
   updateUserApi
 } from '@api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getCookie, setCookie } from '@utils-cookie';
+import { getCookie, setCookie } from '../../../utils/cookie';
 import { setIsAuthChecked, setUser } from './userSlice';
 
 export const registerUserThunk = createAsyncThunk(

@@ -1,9 +1,4 @@
 import {
-  getConstuctorPath,
-  getFeedPath,
-  getProfilePath
-} from '@services/routes';
-import {
   BurgerIcon,
   ListIcon,
   Logo,
@@ -11,6 +6,11 @@ import {
 } from '@zlden/react-developer-burger-ui-components';
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
+import {
+  getConstuctorPath,
+  getFeedPath,
+  getProfilePath
+} from '../../../services/routes';
 import styles from './app-header.module.css';
 import { TAppHeaderUIProps } from './type';
 

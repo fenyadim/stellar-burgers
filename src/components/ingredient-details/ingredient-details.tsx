@@ -1,7 +1,7 @@
-import { ingredientsSelector } from '@services/slices';
-import { useSelector } from '@services/store';
+import { ingredientsSelector } from '@slices';
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from '../../services/store';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
 import { Preloader } from '../ui/preloader';
 

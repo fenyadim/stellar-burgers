@@ -1,8 +1,8 @@
-import { ordersFeedsSelector } from '@services/slices';
-import { useSelector } from '@services/store';
+import { ordersFeedsSelector } from '@slices';
 import { Preloader } from '@ui';
 import { FeedUI } from '@ui-pages';
 import { FC } from 'react';
+import { useSelector } from '../../services/store';
 
 export const Feed: FC = () => {
   const orders = useSelector(ordersFeedsSelector);

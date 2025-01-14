@@ -1,39 +1,65 @@
-import { getFeedsApi } from '@api';
+import { getOrdersApi, orderBurgerApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { TOrder } from '@utils-types';
+import { TConstructorIngredient } from '@utils-types';
+
+type TConstructor = {
+  bun: TConstructorIngredient | null;
+  ingredients: TConstructorIngredient[];
+};
 
 type TInitalState = {
-  items: TOrder[];
-  isLoading: boolean;
-  hasError: boolean;
+  constructorItems: TConstructor;
+  orderRequest: boolean;
+  error: string | undefined;
 };
 
 const initialState: TInitalState = {
-  items: [],
-  isLoading: false,
-  hasError: false
+  constructorItems: {
+    bun: null,
+    ingredients: []
+  },
+  orderRequest: false,
+  error: undefined
 };
 
 export const getOrdersThunk = createAsyncThunk('orders/getOrders', () =>
-  getFeedsApi()
+  getOrdersApi()
+);
+
+export const createOrderThunk = createAsyncThunk(
+  'orders/createOrder',
+  async (data: string[]) => orderBurgerApi(data)
 );
 
 export const ordersSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {},
+  reducers: {
+    setIngredientToOrder: (state, action) => {
+      state.constructorItems.ingredients = [
+        ...state.constructorItems.ingredients,
+        action.payload
+      ];
+    },
+    setBunToOrder: (state, action) => {
+      state.constructorItems.bun = action.payload;
+    }
+  },
+  selectors: {
+    getConstructorItems: (state) => state.constructorItems,
+    getOrderRequest: (state) => state.orderRequest
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getOrdersThunk.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(getOrdersThunk.pending, (state) => {})
       .addCase(getOrdersThunk.fulfilled, (state, action) => {
-        // state.items = action.payload;
-        state.isLoading = false;
+        // state.order = action.payload;
       })
-      .addCase(getOrdersThunk.rejected, (state) => {
-        state.hasError = true;
-        state.isLoading = false;
+      .addCase(getOrdersThunk.rejected, (state, action) => {
+        state.error = action.error.message;
       });
   }
 });
+
+export const { getConstructorItems, getOrderRequest } = ordersSlice.selectors;
+export const { setIngredientToOrder, setBunToOrder } = ordersSlice.actions;
