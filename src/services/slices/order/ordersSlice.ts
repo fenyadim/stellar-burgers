@@ -34,17 +34,7 @@ export const createOrderThunk = createAsyncThunk(
 export const ordersSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {
-    setIngredientToOrder: (state, action) => {
-      state.constructorItems.ingredients = [
-        ...state.constructorItems.ingredients,
-        action.payload
-      ];
-    },
-    setBunToOrder: (state, action) => {
-      state.constructorItems.bun = action.payload;
-    }
-  },
+  reducers: {},
   selectors: {
     getConstructorItems: (state) => state.constructorItems,
     getOrderRequest: (state) => state.orderRequest
@@ -62,4 +52,3 @@ export const ordersSlice = createSlice({
 });
 
 export const { getConstructorItems, getOrderRequest } = ordersSlice.selectors;
-export const { setIngredientToOrder, setBunToOrder } = ordersSlice.actions;

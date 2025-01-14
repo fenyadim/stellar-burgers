@@ -1,3 +1,4 @@
+export * from './burgerConstructor/burgerConstructorSlice';
 export * from './feeds/feedsSlice';
 export * from './ingredients/ingredientsSlice';
 export * from './order/ordersSlice';

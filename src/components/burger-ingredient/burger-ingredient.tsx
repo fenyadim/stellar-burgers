@@ -1,9 +1,10 @@
 import { FC, memo } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { setBunToOrder, setIngredientToOrder } from '@slices';
+import { addIngredient, setBun } from '@slices';
 import { BurgerIngredientUI } from '@ui';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { TBurgerIngredientProps } from './type';
 
 export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
@@ -13,9 +14,14 @@ export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
 
     const handleAdd = () => {
       if (ingredient.type === 'bun') {
-        dispatch(setBunToOrder(ingredient));
+        dispatch(setBun(ingredient));
       } else {
-        dispatch(setIngredientToOrder({ ...ingredient, id: ingredient._id }));
+        dispatch(
+          addIngredient({
+            ...ingredient,
+            id: uuidv4()
+          })
+        );
       }
     };
 
