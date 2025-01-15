@@ -5,12 +5,7 @@ import styles from './app.module.css';
 
 import { AppHeader, Modal, OnlyAuth } from '@components';
 
-import {
-  checkUserAuth,
-  getFeedsThunk,
-  getIngredientsThunk,
-  getOrdersThunk
-} from '@slices';
+import { checkUserAuth } from '@slices';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from '../../services/store';
 
@@ -23,9 +18,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserAuth());
-    dispatch(getFeedsThunk());
-    dispatch(getIngredientsThunk());
-    dispatch(getOrdersThunk());
   }, []);
 
   const onCloseModal = () => {

@@ -1,5 +1,6 @@
 import { getOrderByNumberApi, getOrdersApi, orderBurgerApi } from '@api';
 import { Action, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { clearConstructorData } from '@slices';
 import { TOrder } from '@utils-types';
 
 interface RejectedAction extends Action {
@@ -24,13 +25,18 @@ const initialState: TInitalState = {
   error: undefined
 };
 
-export const getOrdersThunk = createAsyncThunk('orders/getOrders', () =>
-  getOrdersApi()
+export const getOrdersThunk = createAsyncThunk(
+  'orders/getOrders',
+  getOrdersApi
 );
 
 export const createOrderThunk = createAsyncThunk(
   'orders/createOrder',
-  async (data: string[]) => orderBurgerApi(data)
+  async (data: string[], { dispatch }) =>
+    orderBurgerApi(data).then((res) => {
+      dispatch(clearConstructorData());
+      return res;
+    })
 );
 
 export const getOrderNumberThunk = createAsyncThunk(

@@ -1,5 +1,4 @@
 import {
-  clearConstructorData,
   clearOrder,
   createOrderThunk,
   getBunSelector,
@@ -44,7 +43,6 @@ export const BurgerConstructor: FC = () => {
     dispatch(createOrderThunk(data));
   };
   const closeOrderModal = () => {
-    dispatch(clearConstructorData());
     dispatch(clearOrder());
   };
 

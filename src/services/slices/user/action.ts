@@ -31,18 +31,14 @@ export const loginUserThunk = createAsyncThunk(
   }
 );
 
-export const getUserThunk = createAsyncThunk('user/getUser', async () =>
-  getUserApi()
-);
+export const getUserThunk = createAsyncThunk('user/getUser', getUserApi);
 
 export const updateUserThunk = createAsyncThunk(
   'user/updateUser',
   async (formData: TRegisterData) => updateUserApi(formData)
 );
 
-export const logoutUserThunk = createAsyncThunk('user/logoutUser', async () =>
-  logoutApi()
-);
+export const logoutUserThunk = createAsyncThunk('user/logoutUser', logoutApi);
 
 export const checkUserAuth = createAsyncThunk(
   'user/checkUserAuth',
