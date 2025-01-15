@@ -7,7 +7,6 @@ import { OrderInfoUI } from '../ui/order-info';
 import { Preloader } from '../ui/preloader';
 
 export const OrderInfo: FC = () => {
-  /** TODO: взять переменные orderData и ingredients из стора */
   const { number } = useParams();
   const order = useSelector(ordersFeedsSelector);
   const ingredients = useSelector(ingredientsSelector);
