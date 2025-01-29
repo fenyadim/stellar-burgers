@@ -10,7 +10,7 @@ type TInitalState = {
   error: string | undefined;
 };
 
-const initialState: TInitalState = {
+export const initialFeedsState: TInitalState = {
   orders: [],
   total: 0,
   totalToday: 0,
@@ -22,7 +22,7 @@ export const getFeedsThunk = createAsyncThunk('feeds/getFeeds', getFeedsApi);
 
 export const feedsSlice = createSlice({
   name: 'feeds',
-  initialState,
+  initialState: initialFeedsState,
   reducers: {},
   selectors: {
     ordersFeedsSelector: (state) => state.orders,

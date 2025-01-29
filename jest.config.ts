@@ -12,7 +12,7 @@ const config: Config = {
   // Stop running tests after `n` failures
   // bail: 0,
 
-  // The directory where Jest should store its cached dependency information
+  // The directory where Jest should store no cached dependency information
   // cacheDirectory: "C:\\Users\\Dima\\AppData\\Local\\Temp\\jest",
 
   // Automatically clear mock calls, instances, contexts and results before every test
@@ -78,19 +78,29 @@ const config: Config = {
   // ],
 
   // An array of file extensions your modules use
-  // moduleFileExtensions: [
-  //   "js",
-  //   "mjs",
-  //   "cjs",
-  //   "jsx",
-  //   "ts",
-  //   "tsx",
-  //   "json",
-  //   "node"
-  // ],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'node'],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '@api': '<rootDir>/src/utils/burger-api.ts',
+    '^@slices(.*)$': '<rootDir>/src/services/slices$1'
+    // '@pages/(.*)$': '<rootDir>/src/pages/$1',
+    // '@components/(.*)$': '<rootDir>/src/components/$1',
+    // '@ui/(.*)$': '<rootDir>/src/components/ui/$1',
+    // '@ui-pages/(.*)$': '<rootDir>/src/components/ui/pages/$1',
+    // '@utils-types/(.*)$': '<rootDir>/src/utils/types/$1',
+    // '@api': '<rootDir>/src/utils/burger-api.ts',
+    // '@slices(.*)$': '<rootDir>/src/services/slices/$1',
+    // '@selectors/(.*)$': '<rootDir>/src/services/selectors/$1'
+  },
+  // moduleNameMapper: {
+  //   '^@api': '<rootDir>/src/utils/burger-api.ts',
+  //   '^@/(.*)$': '<rootDir>/src/$1'
+  // },
+  // moduleNameMapper: {
+  //     "^@components(.*)$": "<rootDir>/src/components$1"
+  //     ...other modules
+  //   }
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -126,9 +136,7 @@ const config: Config = {
   // rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>"
-  // ],
+  roots: ['<rootDir>/src/'],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -146,7 +154,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: 'node',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -176,12 +184,7 @@ const config: Config = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.tsx?$': [
-      'ts-jest',
-      {
-        // настройки для ts-jest
-      }
-    ]
+    '^.+\\.(ts|tsx)?$': 'ts-jest'
   }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
