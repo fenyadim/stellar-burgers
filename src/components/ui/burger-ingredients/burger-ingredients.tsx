@@ -1,9 +1,9 @@
-import React, { FC, memo } from 'react';
 import { Tab } from '@zlden/react-developer-burger-ui-components';
+import { FC, memo } from 'react';
 
+import { IngredientsCategory } from '@components';
 import styles from './burger-ingredients.module.css';
 import { BurgerIngredientsUIProps } from './type';
-import { IngredientsCategory } from '@components';
 
 export const BurgerIngredientsUI: FC<BurgerIngredientsUIProps> = memo(
   ({
@@ -20,7 +20,10 @@ export const BurgerIngredientsUI: FC<BurgerIngredientsUIProps> = memo(
     onTabClick
   }) => (
     <>
-      <section className={styles.burger_ingredients}>
+      <section
+        className={styles.burger_ingredients}
+        data-cy={'burgerIngredients'}
+      >
         <nav>
           <ul className={styles.menu}>
             <Tab value='bun' active={currentTab === 'bun'} onClick={onTabClick}>
