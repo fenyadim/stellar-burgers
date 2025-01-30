@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.29% </span>
+                <span class="strong">87.34% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>50/79</span>
+                <span class='fraction'>69/79</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.29% </span>
+                <span class="strong">87.34% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>50/79</span>
+                <span class='fraction'>69/79</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -175,7 +175,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -194,27 +194,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -241,7 +241,7 @@ type TInitalState = {
   error: string | undefined;
 };
 &nbsp;
-const initialState: TInitalState = {
+export const initialUserState: TInitalState = {
   isAuthChecked: false,
   user: null,
   error: undefined
@@ -253,12 +253,12 @@ const fulfilledAction = <span class="fstat-no" title="function not covered" >(st
 <span class="cstat-no" title="statement not covered" >  state.error = undefined;</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
-const isRejectedAction = <span class="fstat-no" title="function not covered" >(action: Action): action is RejectedAction =&gt;</span>
-<span class="cstat-no" title="statement not covered" >  action.type.endsWith('rejected');</span>
+const isRejectedAction = (action: Action): action is RejectedAction =&gt;
+  action.type.endsWith('rejected');
 &nbsp;
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: initialUserState,
   reducers: {
     setIsAuthChecked: <span class="fstat-no" title="function not covered" >(state, action: PayloadAction&lt;boolean&gt;) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      state.isAuthChecked = action.payload;</span>
@@ -272,28 +272,28 @@ export const userSlice = createSlice({
     isAuthCheckedSelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>isAuthChecked,
     errorSelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>error
   },
-  extraReducers: <span class="fstat-no" title="function not covered" >(builder) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    builder</span>
-<span class="cstat-no" title="statement not covered" >      .addCase(getUserThunk.fulfilled, (state, action) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >        fulfilledAction(state, action.payload.user)</span>
-<span class="cstat-no" title="statement not covered" >      )</span>
-<span class="cstat-no" title="statement not covered" >      .addCase(updateUserThunk.fulfilled, (state, action) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >        fulfilledAction(state, action.payload.user)</span>
-<span class="cstat-no" title="statement not covered" >      )</span>
-<span class="cstat-no" title="statement not covered" >      .addCase(loginUserThunk.fulfilled, (state, action) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >        fulfilledAction(state, action.payload)</span>
-<span class="cstat-no" title="statement not covered" >      )</span>
-<span class="cstat-no" title="statement not covered" >      .addCase(registerUserThunk.fulfilled, (state, action) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >        fulfilledAction(state, action.payload)</span>
-<span class="cstat-no" title="statement not covered" >      )</span>
-<span class="cstat-no" title="statement not covered" >      .addCase(logoutUserThunk.fulfilled, (state) =&gt; {</span>
+  extraReducers: (builder) =&gt; {
+    builder
+      .addCase(getUserThunk.fulfilled, (state, action) =&gt;
+        fulfilledAction(state, action.payload.user)
+      )
+      .addCase(updateUserThunk.fulfilled, (state, action) =&gt;
+        fulfilledAction(state, action.payload.user)
+      )
+      .addCase(loginUserThunk.fulfilled, (state, action) =&gt;
+        fulfilledAction(state, action.payload)
+      )
+      .addCase(registerUserThunk.fulfilled, (state, action) =&gt;
+        fulfilledAction(state, action.payload)
+      )
+      .addCase(logoutUserThunk.fulfilled, (state) =&gt; {
 <span class="cstat-no" title="statement not covered" >        fulfilledAction(state, null);</span>
-<span class="cstat-no" title="statement not covered" >      })</span>
-<span class="cstat-no" title="statement not covered" >      .addMatcher(isRejectedAction, (state, action) =&gt; {</span>
+      })
+      .addMatcher(isRejectedAction, (state, action) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.error = action.error.message;</span>
 <span class="cstat-no" title="statement not covered" >        state.isAuthChecked = true;</span>
-<span class="cstat-no" title="statement not covered" >      });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+      });
+  }
 });
 &nbsp;
 export const { setIsAuthChecked, setUser } = userSlice.actions;
@@ -307,7 +307,7 @@ export const { errorSelector, userDataSelector, isAuthCheckedSelector } =
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-29T14:57:14.842Z
+                at 2025-01-30T02:05:31.815Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -18,7 +18,7 @@ type TInitalState = {
   error: string | undefined;
 };
 
-const initialState: TInitalState = {
+export const initialUserState: TInitalState = {
   isAuthChecked: false,
   user: null,
   error: undefined
@@ -35,7 +35,7 @@ const isRejectedAction = (action: Action): action is RejectedAction =>
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: initialUserState,
   reducers: {
     setIsAuthChecked: (state, action: PayloadAction<boolean>) => {
       state.isAuthChecked = action.payload;
