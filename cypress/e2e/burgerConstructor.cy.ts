@@ -33,6 +33,8 @@ describe('Тестируем функциональность конструкт
   it('Добавление ингредиента', () => {
     cy.wait('@getIngredients');
 
+    cy.get(emptyBun).should('exist');
+
     cy.get(ingredientsSection)
       .contains(bunElement)
       .parent()
@@ -40,6 +42,8 @@ describe('Тестируем функциональность конструкт
       .click();
 
     cy.get(constructorSection).should('contain.text', bunElement);
+
+    cy.get(emptyIngredients).should('exist');
 
     cy.get(ingredientsSection)
       .contains(mainElement)
@@ -61,10 +65,12 @@ describe('Тестируем функциональность конструкт
   describe('Проверка модального окна', () => {
     beforeEach(() => {
       cy.wait('@getIngredients');
+      cy.get(modalSection).should('not.exist');
       cy.get(ingredientsSection).contains(bunElement).click();
     });
     it('Открытые модального окна', () => {
       cy.get(modalSection).should('be.visible');
+      cy.get(modalSection).should('contain.text', bunElement);
     });
     it('Закрытие модального окна через кнопку', () => {
       cy.get(modalSection).find('button').click();
@@ -86,6 +92,11 @@ describe('Тестируем функциональность конструкт
       }).as('user');
     });
     it('Оформление заказа', () => {
+      cy.get(submitOrderBtn).should('be.disabled');
+
+      cy.get(emptyBun).should('exist');
+      cy.get(emptyIngredients).should('exist');
+
       cy.get(ingredientsSection)
         .contains(bunElement)
         .parent()
@@ -103,6 +114,8 @@ describe('Тестируем функциональность конструкт
         .parent()
         .find('button')
         .click();
+
+      cy.get(submitOrderBtn).should('not.be.disabled');
 
       cy.get(submitOrderBtn).click();
 
