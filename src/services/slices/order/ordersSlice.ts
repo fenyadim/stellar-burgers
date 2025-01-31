@@ -1,4 +1,4 @@
-import { getOrderByNumberApi, getOrdersApi, orderBurgerApi } from '@api';
+import { getOrdersApi, orderBurgerApi } from '@api';
 import { Action, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { clearConstructorData } from '@slices';
 import { TOrder } from '@utils-types';
@@ -12,16 +12,14 @@ type TInitalState = {
   isLoading: boolean;
   orderRequest: boolean;
   orderModal: TOrder | null;
-  orderNumber: TOrder[] | [];
   error: string | undefined;
 };
 
-const initialState: TInitalState = {
+export const initialOrdersState: TInitalState = {
   orders: [],
   isLoading: false,
   orderRequest: false,
   orderModal: null,
-  orderNumber: [],
   error: undefined
 };
 
@@ -39,11 +37,6 @@ export const createOrderThunk = createAsyncThunk(
     })
 );
 
-export const getOrderNumberThunk = createAsyncThunk(
-  'orders/getOrderNumber',
-  async (number: number) => getOrderByNumberApi(number)
-);
-
 const isRejectedAction = (action: Action): action is RejectedAction =>
   action.type.endsWith('rejected');
 
@@ -51,7 +44,7 @@ const isPendingAction = (action: Action) => action.type.endsWith('pending');
 
 export const ordersSlice = createSlice({
   name: 'orders',
-  initialState,
+  initialState: initialOrdersState,
   reducers: {
     clearOrder: (state) => {
       state.orderModal = null;
@@ -75,10 +68,6 @@ export const ordersSlice = createSlice({
         state.isLoading = false;
         state.orderModal = action.payload.order;
         state.orderRequest = false;
-      })
-      .addCase(getOrderNumberThunk.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.orderNumber = action.payload.orders;
       })
       .addMatcher(isPendingAction, (state) => {
         state.isLoading = true;

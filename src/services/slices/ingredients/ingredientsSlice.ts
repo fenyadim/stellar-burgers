@@ -8,7 +8,7 @@ type TInitalState = {
   hasError: boolean;
 };
 
-const initialState: TInitalState = {
+export const initialIngredientState: TInitalState = {
   items: [],
   isLoading: false,
   hasError: false
@@ -21,7 +21,7 @@ export const getIngredientsThunk = createAsyncThunk(
 
 export const ingredientsSlice = createSlice({
   name: 'ingredients',
-  initialState,
+  initialState: initialIngredientState,
   reducers: {},
   selectors: {
     ingredientsSelector: (state) => state.items,

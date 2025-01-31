@@ -7,7 +7,7 @@ type TInitalState = {
   ingredients: TConstructorIngredient[];
 };
 
-const initialState: TInitalState = {
+export const initialState: TInitalState = {
   bun: null,
   ingredients: []
 };
@@ -57,6 +57,8 @@ export const burgerConstructorSlice = createSlice({
     getIngredientsSelector: (state) => state.ingredients
   }
 });
+
+export const { reducer } = burgerConstructorSlice;
 
 export const { getBunSelector, getIngredientsSelector } =
   burgerConstructorSlice.selectors;
